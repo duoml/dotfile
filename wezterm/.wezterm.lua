@@ -92,6 +92,31 @@ return {
         },
         mods = "NONE",
         action = "Paste"
+    },
+    -- Change the default click behavior so that it only selects
+    -- text and doesn't open hyperlinks
+    {
+        event = {
+            Up = {
+                streak = 1,
+                button = "Left"
+            }
+        },
+        mods = "NONE",
+        action = wezterm.action {
+            CompleteSelection = "PrimarySelection"
+        }
+    },
+    -- and make CTRL-Click open hyperlinks
+    {
+        event = {
+            Up = {
+                streak = 1,
+                button = "Left"
+            }
+        },
+        mods = "CTRL",
+        action = "OpenLinkAtMouseCursor"
     }}
 
 }
