@@ -71,11 +71,27 @@ table.insert(mykeys, {
     action = wezterm.action_callback(nextScheme)
 })
 
+local onedark = {
+    foreground = "#abb2bf",
+    background = "#282c34",
+    -- cursor_bg = "#a3b3cc",
+    -- cursor_border = "#a3b3cc",
+    -- cursor_fg = "#abb2bf",
+    selection_bg = "#474e5d",
+    selection_fg = "#abb2bf",
+    scrollbar_thumb = "#282c34",
+
+    ansi = {"#282c34","#e06c75","#98c379","#e5c07b","#61afef","#c678dd","#56b6c2","#abb2bf"},
+    brights = {"#282c34","#e06c75","#98c379","#e5c07b","#61afef","#c678dd","#56b6c2","#abb2bf"},
+}
+
 return {
     harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
     keys = mykeys,
     default_prog = {"ssh","duoml@192.168.232.136"},
-    color_scheme = schemes[schemeIdx],
+    -- color_scheme = schemes[schemeIdx],
+    colors = onedark,
+    selection_word_boundary = "{}[]()\"'`.,;: -<>",
     launch_menu = {{
         label = "PowerShell",
         args = {"powershell"}
