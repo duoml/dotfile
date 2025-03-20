@@ -94,6 +94,7 @@ alias grep='grep --color=auto'
 alias vim='nvim'
 alias vimdiff='vim -d'
 alias fzf='fzf --height 40% --layout reverse --border'
+alias glp="git --no-pager log --pretty=format:'%Cblue%h%Creset %<(60,trunc)%s [%C(green)%<(21,trunc)%ai%x08%x08%Creset %Cred%an%Creset%C(yellow)%d%Creset]'"
 export PATH=/home/duoml/workspace/depot_tools/:$PATH
 export FZF_CTRL_T_OPTS="--border"
 export FZF_CTRL_R_OPTS="--layout reverse --border"

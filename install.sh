@@ -8,19 +8,19 @@ script_dir=$(dirname $0)
 # will enter zsh shell, manually exit to continue install
 sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-# ln -nsf ${script_dir}/.zshrc ~/.zshrc
-cp $script_dir/.zshrc ~/.zshrc
+rm -rf ~/.zshrc
+ln -nsf ${script_dir}/.zshrc ~/.zshrc
+# cp $script_dir/.zshrc ~/.zshrc
 
 if [[ $OS == "ubuntu" ]]; then
   sudo apt-get install ripgrep zsh -y
   mkdir -p ~/bin && cd ~/bin 
-  wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-  tar xf nvim-linux64.tar.gz
-  echo "alias vim='~/bin/nvim-linux64/bin/nvim'" >> ~/.zshrc
+  wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+  tar xf nvim-linux-x86_64.tar.gz
+  echo "alias vim='~/bin/nvim-linux-x86_64/bin/nvim'" >> ~/.zshrc
   echo "alias vimdiff='vim -d'" >> ~/.zshrc
-  git config --global core.editor ~/bin/nvim-linux64/bin/nvim
+  git config --global core.editor ~/bin/nvim-linux-x86_64/bin/nvim
   if [ ! -d "$HOME/.fzf" ]; then
-    echo "fzf existed"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   fi
   ~/.fzf/install
@@ -34,6 +34,10 @@ else
 fi
 
 # install nvchad
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+
 # git clone git@github.com:duoml/NvimConfig.git ~/.config/nvim
 git clone https://github.com/duoml/NvimConfig.git ~/.config/nvim
 # run nvim and :MasonInstallAll
