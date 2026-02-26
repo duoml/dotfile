@@ -14,10 +14,12 @@ end
 local host_os = get_os()
 
 -- [字体与样式] --------------------------------------------------------------
-config.font = wezterm.font_with_fallback({
-	{ family = "Liga SFMono Nerd Font", weight = "Regular" },
-	"Apple Color Emoji", -- macOS 优先使用原生 Emoji
-})
+if host_os == "macos" then
+  config.font = wezterm.font_with_fallback({
+  	{ family = "Liga SFMono Nerd Font", weight = "Regular" },
+  	"Apple Color Emoji", -- macOS 优先使用原生 Emoji
+  })
+end
 config.font_size = host_os == "macos" and 18 or 14 -- Mac 屏幕密度高，16-18 较舒适
 config.line_height = 1.2
 -- 关闭连字
@@ -31,6 +33,8 @@ config.colors = {
 	cursor_fg = "#282c34",
 	selection_bg = "#474e5d",
 	selection_fg = "#abb2bf",
+  scrollbar_thumb = "#474e5d",
+
 	ansi = { "#282c34", "#e06c75", "#98c379", "#e5c07b", "#61afef", "#c678dd", "#56b6c2", "#abb2bf" },
 	brights = { "#5c6370", "#e06c75", "#98c379", "#e5c07b", "#61afef", "#c678dd", "#56b6c2", "#abb2bf" },
 }
@@ -74,6 +78,8 @@ config.window_padding = { left = "1cell", right = "1cell", top = "1cell", bottom
 config.window_background_opacity = 0.8
 config.macos_window_background_blur = 40
 config.win32_system_backdrop = "Acrylic"
+config.enable_scroll_bar = true
+config.min_scroll_bar_height = "2cell" -- 设置滑块的最小高度，防止内容多时滑块变成一个点
 
 if host_os == "macos" then
 	-- 隐藏标题栏但保留红绿灯，显得极其简洁
