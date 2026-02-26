@@ -69,15 +69,15 @@ config.keys = mykeys
 -- [窗口与 UI] ---------------------------------------------------------------
 config.initial_rows = 60
 config.initial_cols = 200
-config.window_padding = { left = "1cell", right = "1cell", top = "0.5cell", bottom = "0cell" }
+config.window_padding = { left = "1cell", right = "1cell", top = "1cell", bottom = "0cell" }
 
-config.window_background_opacity = 0.9
-config.macos_window_background_blur = 30
+config.window_background_opacity = 0.8
+config.macos_window_background_blur = 40
 config.win32_system_backdrop = "Acrylic"
 
 if host_os == "macos" then
 	-- 隐藏标题栏但保留红绿灯，显得极其简洁
-	config.window_decorations = "RESIZE"
+	config.window_decorations = "RESIZE | INTEGRATED_BUTTONS"
 	-- 允许 Option 键作为输入特殊字符或作为 Meta 键
 	config.send_composed_key_when_left_alt_is_pressed = false
 	config.send_composed_key_when_right_alt_is_pressed = false
