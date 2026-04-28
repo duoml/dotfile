@@ -15,10 +15,10 @@ local host_os = get_os()
 
 -- [字体与样式] --------------------------------------------------------------
 if host_os == "macos" then
-  config.font = wezterm.font_with_fallback({
-  	{ family = "Liga SFMono Nerd Font", weight = "Regular" },
-  	"Apple Color Emoji", -- macOS 优先使用原生 Emoji
-  })
+	config.font = wezterm.font_with_fallback({
+		{ family = "Liga SFMono Nerd Font", weight = "Regular" },
+		"Apple Color Emoji", -- macOS 优先使用原生 Emoji
+	})
 end
 config.font_size = host_os == "macos" and 18 or 14 -- Mac 屏幕密度高，16-18 较舒适
 config.line_height = 1.2
@@ -33,7 +33,7 @@ config.colors = {
 	cursor_fg = "#282c34",
 	selection_bg = "#474e5d",
 	selection_fg = "#abb2bf",
-  scrollbar_thumb = "#474e5d",
+	scrollbar_thumb = "#474e5d",
 
 	ansi = { "#282c34", "#e06c75", "#98c379", "#e5c07b", "#61afef", "#c678dd", "#56b6c2", "#abb2bf" },
 	brights = { "#5c6370", "#e06c75", "#98c379", "#e5c07b", "#61afef", "#c678dd", "#56b6c2", "#abb2bf" },
@@ -58,6 +58,12 @@ local mykeys = {
 		mods = host_os == "macos" and "OPT" or "CTRL",
 		action = wezterm.action({ SendString = "\x17" }),
 	},
+	-- 让 Shift+Enter 发送一个换行字符
+	{
+		key = "Enter",
+		mods = "SHIFT",
+		action = wezterm.action({ SendString = "\n" }),
+	},
 }
 
 -- 快速切换 Tab (Alt + 1-8)
@@ -75,7 +81,7 @@ config.initial_rows = 60
 config.initial_cols = 200
 config.window_padding = { left = "1cell", right = "1cell", top = "1cell", bottom = "0cell" }
 
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.95
 config.macos_window_background_blur = 40
 config.win32_system_backdrop = "Acrylic"
 config.enable_scroll_bar = true
@@ -96,19 +102,18 @@ config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 config.colors.tab_bar = {
-    background = 'rgba(0,0,0,0)', -- 透明背景
-    active_tab = {
-      bg_color = '#61afef',
-      fg_color = '#282c34',
-      intensity = 'Bold',
-    },
-    inactive_tab = {
-      bg_color = 'rgba(0,0,0,0)', -- 未激活标签背景透明
-      fg_color = '#5c6370',       -- 未激活文字调暗
-    },
-    inactive_tab_edge = 'rgba(0,0,0,0)',
+	background = "rgba(0,0,0,0)", -- 透明背景
+	active_tab = {
+		bg_color = "#61afef",
+		fg_color = "#282c34",
+		intensity = "Bold",
+	},
+	inactive_tab = {
+		bg_color = "rgba(0,0,0,0)", -- 未激活标签背景透明
+		fg_color = "#5c6370", -- 未激活文字调暗
+	},
+	inactive_tab_edge = "rgba(0,0,0,0)",
 }
-
 
 -- [性能与高级] --------------------------------------------------------------
 config.front_end = "WebGpu" -- macOS/Windows 现代显卡首选
